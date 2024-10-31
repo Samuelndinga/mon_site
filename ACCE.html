@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Église du Seigneur Jésus Christ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <header>
+        <nav>
+            <button id="toggleBtn" class="button">Afficher/Masquer les Boutons</button>
+            <div id="buttonsContainer" class="hidden"> <!-- Le conteneur est caché par défaut -->
+                <ul>
+                    <li><a href="#accueil" class="accueil">Accueil</a></li>
+                    <li><a href="#priere" class="priere">Prière</a></li>
+                    <li><a href="#emission" class="emission">Émission</a></li> <!-- Correction -->
+                    <li><a href="#enseignement" class="enseignement">Enseignement</a></li>
+                    <li><a href="#don" class="don">Don</a></li>
+                    <li><a href="#contact" class="contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="verset-container">
+        <h1 id="verset"></h1>
+        <img id="verset-image" src="" alt="Image du verset" style="max-width: 100%; height: auto;">
+    </div>
+    <main>
+        <section id="versets-bibliques">
+            <div id="verset"></div>
+        </section>
+        <!-- Autres sections ici -->
+    </main>
+    <footer>
+        <form id="contact-form" action="submit_form.php" method="POST">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" required>
+        
+            <label for="postnom">Post-nom:</label>
+            <input type="text" id="postnom" name="postnom" required>
+        
+            <label for="eglise">Église de provenance:</label>
+            <input type="text" id="eglise" name="eglise" required>
+        
+            <label for="pays">Pays:</label>
+            <input type="text" id="pays" name="pays" required>
+        
+            <label for="ville">Ville:</label>
+            <input type="text" id="ville" name="ville" required>
+        
+            <label for="telephone">Numéro de téléphone:</label>
+            <input type="tel" id="telephone" name="telephone" required>
+        
+            <label for="opinion">Votre opinion:</label>
+            <textarea id="opinion" name="opinion" rows="4" required></textarea>
+        
+            <button type="submit">Envoyer</button>
+        </form>
+    </footer>
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+
+        toggleBtn.addEventListener('click', () => {
+            buttonsContainer.classList.toggle('hidden'); // Utilisation de toggle pour simplifier le code
+        });
+
+        const versets = [
+            { texte: "Car Dieu a tant aimé le monde...", image: "verset1.jpg" },
+            { texte: "Je puis tout par celui qui me fortifie.", image: "verset2.jpg" },
+            { texte: "L'Éternel est mon berger...", image: "verset3.jpg" }
+        ];
+        
+        function afficherVersetAleatoire() {
+            const index = Math.floor(Math.random() * versets.length);
+            document.getElementById("verset").textContent = versets[index].texte;
+            document.getElementById("verset-image").src = versets[index].image;
+        }
+
+        // Appeler la fonction toutes les 5 secondes
+        setInterval(afficherVersetAleatoire, 5000);
+
+        // Afficher un verset au chargement de la page
+        window.onload = afficherVersetAleatoire;
+    </script>
+</body>
+</html>
